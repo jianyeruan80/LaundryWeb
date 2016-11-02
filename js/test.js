@@ -101,7 +101,7 @@ angular.module('starter.test',[])
                   scope.testData.payList=scope.formatPayList(scope.appData.order.grandTotal);  }
 
 
-                    scope.appData.order.grandTotal=toFixed(scope.appData.order.subTotal+scope.appData.order.tip-scope.appData.order.discount,2);
+                    scope.appData.order.grandTotal=toFixed(scope.appData.order.subTotal+scope.appData.order.tax-scope.appData.order.discount,2);
 
 
 
@@ -113,7 +113,34 @@ angular.module('starter.test',[])
             }
     })
   .controller('OrderCtrl', function($scope, $ionicModal, $timeout,$http,$ionicModal,$location,$ionicLoading,$ionicPopup,CONFIG) {
-         
+            $scope.billVoid=function(item){
+    
+
+
+             var currentUrl=CONFIG.url+"orders/billvoid/"+item._id;
+              var method="PUT";
+   
+            $http({ method:method,url: currentUrl, 
+               headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
+               data:{}
+               }).success(function(data){
+              // $scope.appData.order=data;
+               $scope.getOrders();
+              // $scope.closeChange();
+                //$scope.closePay();
+           }).error(function(err){
+              
+              $scope.error(err.message);
+           })
+
+
+
+
+
+    var e = event || window.event;
+    if (e && e.stopPropagation) e.stopPropagation(); 
+    else e.cancelBubble = true; 
+   }
 
                     $scope.getOrders=function(){
 
@@ -160,35 +187,29 @@ angular.module('starter.test',[])
    $scope.openChange = function(pay) {
     
     $scope.appData.order.receiveTotal=pay || $scope.appData.order.receiveTotal;
-    if($scope.appData.order.change=$scope.appData.order.receiveTotal-$scope.appData.order.grandTotal>=0){
+    //if($scope.appData.order.change=$scope.appData.order.receiveTotal-$scope.appData.order.grandTotal>=0){
        $scope.appData.order.change=$scope.appData.order.receiveTotal-$scope.appData.order.grandTotal;
       $scope.modalChange.show();
-     }else{
-alert("不能少于");
-     }
+    // }else{
+//alert("不能少于");
+  //   }
     
    
   
   };
+
    $scope.paySubmit=function(){
         
 
-        var currentUrl=CONFIG.url+"orders";
+        var currentUrl=CONFIG.url+"orders/pay";
               var method="POST";
-              
-              if(!!$scope.appData.order._id){
-                var currentUrl=CONFIG.url+"orders/"+$scope.appData.order._id;
-                method="PUT";
-              }
-
-              $scope.appData.order.sign="Pay";
-       
+   
             $http({ method:method,url: currentUrl, 
                headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
                data:$scope.appData.order
                }).success(function(data){
                $scope.appData.order=data;
-               alert("OK");
+             
                $scope.closeChange();
                 $scope.closePay();
            }).error(function(err){

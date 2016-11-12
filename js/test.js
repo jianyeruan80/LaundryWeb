@@ -101,7 +101,7 @@ angular.module('starter.test',[])
                   scope.testData.payList=scope.formatPayList(scope.appData.order.grandTotal);  }
 
 
-                    scope.appData.order.grandTotal=toFixed(scope.appData.order.subTotal+scope.appData.order.tax-scope.appData.order.discount,2);
+                    scope.appData.order.grandTotal=toFixed(scope.appData.order.subTotal+scope.appData.order.tax-scope.appData.order.discount+scope.appData.order.tip,2);
 
 
 
@@ -112,7 +112,36 @@ angular.module('starter.test',[])
                             
             }
     })
-  .controller('OrderCtrl', function($scope, $ionicModal, $timeout,$http,$ionicModal,$location,$ionicLoading,$ionicPopup,CONFIG) {
+  .controller('OrderCtrl', function($scope, $ionicModal,$filter, $timeout,$http,$ionicModal,$location,$ionicLoading,$ionicPopup,CONFIG) {
+ 
+  $scope.testvoid=function(item){
+ var e = event || window.event;
+    if (e && e.stopPropagation) e.stopPropagation();
+    else e.cancelBubble = true;
+
+
+
+             var currentUrl=CONFIG.url+"orders/void/"+item._id;
+              var method="PUT";
+
+            $http({ method:method,url: currentUrl,
+
+
+
+               headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
+               data:{}
+               }).success(function(data){
+              // $scope.appData.order=data;
+               $scope.getOrders();
+               alert("OK");
+              // $scope.closeChange();
+                //$scope.closePay();
+           }).error(function(err){
+
+              $scope.error(err.message);
+           })
+          }
+     
             $scope.billVoid=function(item){
     
 
@@ -149,6 +178,11 @@ angular.module('starter.test',[])
                    headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
                  
                      }).success(function(data){
+                       angular.forEach(data,function(v,k){
+                      		  v.bills=$filter('filter')(v.bills,{status:"Paid"});
+			
+			
+                       })
                   $scope.appData.orders=data;
                     
                     }).error(function(err){
@@ -197,7 +231,9 @@ angular.module('starter.test',[])
    
   
   };
-
+    $scope.orderVoid=function(){
+    alert("test");
+    }
    $scope.paySubmit=function(){
         
 

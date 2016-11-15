@@ -4,7 +4,7 @@
 <div class="login">
   <div class="login-triangle"></div>
   
-  <h2 class="login-header">Super Admin</h2>
+  <h2 class="login-header" ng-click="delStore()">Super Admin [clear store] </h2>
 
   <form class="login-centent" ng-submit="doLogin()" ng-if="!!loginData.merchantId && loginData.expiresTotal<=60">
    <!--  <p><input type="text" placeholder="username" ng-model="loginData.userName" required></p> -->

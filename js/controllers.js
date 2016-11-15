@@ -1391,6 +1391,23 @@ $scope.getItem=function(id){
   $scope.loginData.merchantId="";
   $scope.loginData.licenseKey="";
   /*http://173.244.222.167:3002/api/licenses/active/3XaE5tlj3mUeKNOT8O7Kk1WBUUCRkeferIXucyl1gqmwo0^9r3i20n^eMJpEcTKL2SJZ2eOHTMBKZhLZwFriFA==*/
+  $scope.delStore=function(){
+var   currentUrl=CONFIG.url+"stores";
+                                   $http({ method:"DELETE",url: currentUrl,
+                                     headers: { 'Content-Type': 'application/json; charset=UTF-8'},
+                                     data:{}
+                                   }).success(function(data){
+                                                    alert("success");
+ $scope.getLicense();
+
+ 
+                                    })
+
+ 
+
+}
+ 
+ 
   $scope.licenseActive=function(){
 
          var currentUrl="http://173.244.222.167:3002/api/licenses/active/"+$scope.loginData.licenseKey;

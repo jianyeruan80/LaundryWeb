@@ -173,8 +173,8 @@ angular.module('starter.test',[])
 
                     $scope.getOrders=function(){
 
-          var currentUrl=CONFIG.url+"orders";
-                  $http({ method:"GET",url: currentUrl, 
+          var currentUrl=CONFIG.url+"orders/query";
+                  $http({ method:"POST",url: currentUrl, 
                    headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
                  
                      }).success(function(data){
@@ -400,14 +400,16 @@ angular.forEach(values, function(value, key) {
   
         var currentUrl=CONFIG.url+"orders";
               var method="POST";
-              
+	   $scope.appData.order.customer={};
+           $scope.appData.order.customer.id='582fe7d64693ac000adc39a4';
               if(!!$scope.appData.order._id){
                 var currentUrl=CONFIG.url+"orders/"+$scope.appData.order._id;
                 method="PUT";
               }
 
-              $scope.appData.order.sign="saveOrder";
-       
+            console.log("0000000000000");
+           console.log($scope.appData.order);
+        console.log("xxxxxxxxxxxx");
             $http({ method:method,url: currentUrl, 
                headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
                data:$scope.appData.order

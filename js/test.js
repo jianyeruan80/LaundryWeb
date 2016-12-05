@@ -184,6 +184,9 @@ angular.module('starter.test',[])
 			
                        })
                   $scope.appData.orders=data;
+                   console.log("--------------------");
+                 console.log($scope.appData.orders);
+             console.log("=========================");
                     
                     }).error(function(err){
                $scope.error(err.message);

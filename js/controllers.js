@@ -1489,7 +1489,7 @@ var   currentUrl=CONFIG.url+"stores";
 
   }
   $scope.doLogin=function(){
-  var currentUrl=CONFIG.url+"admin/login";    
+  var currentUrl=CONFIG.url+"admin/loginBak";    
   $http({ method:"POST",url: currentUrl, 
        headers: { 'Content-Type': 'application/json; charset=UTF-8'},
        data:$scope.loginData

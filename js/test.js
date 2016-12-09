@@ -313,7 +313,7 @@ angular.module('starter.test',[])
                 });*/
     
     $scope.testData.payList=[];
-    $scope.testData.categorys=[];
+    $scope.testData.categories=[];
     $scope.testData.items=[];
     $scope.testData.selectGroupIndex=0; 
     $scope.testData.selectCategoryIndex=0; 
@@ -348,15 +348,16 @@ angular.forEach(values, function(value, key) {
 
     $scope.selectGroup=function(index){
      	$scope.testData.selectGroupIndex=index;
-     	$scope.testData.categorys=[];
-     	$scope.testData.categorys=$scope.appData.menus.menus[$scope.testData.selectGroupIndex].categorys;
+     	$scope.testData.categories=[];
+     	$scope.testData.categories=$scope.appData.menus.menus[$scope.testData.selectGroupIndex].categories;
      	
      	$scope.selectCategory(0);
      }	
       $scope.selectCategory=function(index){
         $scope.testData.items=[];
       	$scope.testData.selectCategoryIndex=index;
-        $scope.testData.items=$scope.appData.menus.menus[$scope.testData.selectGroupIndex].categorys[$scope.testData.selectCategoryIndex].items;
+       try{ 
+       $scope.testData.items=$scope.appData.menus.menus[$scope.testData.selectGroupIndex].categories[$scope.testData.selectCategoryIndex].items;}catch(ex){}
      }	
       $scope.selectItem=function(item){
 

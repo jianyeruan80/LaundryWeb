@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 //value可与你修改，constant不能修改。 value不能在provider内访问，constant可以
 angular.module('starter', ['ionic', 'starter.controllers','starter.test'])
-.constant('CONFIG', {'url':'http://173.244.222.167:3003/api/','info':{},'merchantId':"",'path':'http://173.244.222.167:3003/'})
+.constant('CONFIG', {'url':'http://127.0.0.1:3000/api/','info':{},'merchantId':"",'path':'http://127.0.0.1:3000/'})
 .run(function($ionicPlatform,$rootScope,CONFIG,$location) {
   $rootScope.CONFIG = CONFIG;
     $rootScope.$on('$locationChangeStart', function() {

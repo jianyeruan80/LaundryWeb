@@ -20,7 +20,7 @@ angular.module('starter.controllers', ['ng-sortable'])
     $scope.appData.order.discountRate=0;
     $scope.appData.order.grandTotal=0;
     $scope.appData.order.receiveTotal=0;
-        $scope.appData.order.orderDetails=[];
+    $scope.appData.order.orderDetails=[];
     
    $scope.appData.menus=[];
    
@@ -1410,7 +1410,7 @@ var   currentUrl=CONFIG.url+"stores";
  
   $scope.licenseActive=function(){
 
-         var currentUrl="http://173.244.222.167:3002/api/licenses/active/"+$scope.loginData.licenseKey;
+         var currentUrl="http://service520:3002/api/licenses/active/"+$scope.loginData.licenseKey;
         
            $http({ method:"PUT",url: currentUrl, 
              headers: { 'Content-Type': 'application/json; charset=UTF-8'},

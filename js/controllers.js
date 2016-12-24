@@ -30,7 +30,7 @@ angular.module('starter.controllers', ['ng-sortable'])
    $scope.appData.user={};
    $scope.appData.role={};
 
-   $scope.appData.categorys=[];
+   $scope.appData.categories=[];
    $scope.appData.categoryGroups=[];
    $scope.appData.groups=[];
    $scope.appData.items=[];
@@ -226,7 +226,7 @@ $scope.getRoles=function(){
 
     var currentUrl=CONFIG.url+"groups/sort";
    if($scope.appData.sortSign=="G"){
-    currentUrl=CONFIG.url+"categorys/sort/"+$scope.appData.sortId;
+    currentUrl=CONFIG.url+"categories/sort/"+$scope.appData.sortId;
    }else if($scope.appData.sortSign=="C"){
     currentUrl=CONFIG.url+"items/sort/"+$scope.appData.sortId;
    }
@@ -263,9 +263,9 @@ $scope.getRoles=function(){
      $scope.modalSortMenu.show();
   var currentUrl=CONFIG.url+"groups/merchants/id";
    if(sign=="G"){
-    currentUrl=CONFIG.url+"categorys/groups/"+Id;
+    currentUrl=CONFIG.url+"categories/groups/"+Id;
    }else if(sign=="C"){
-    currentUrl=CONFIG.url+"items/categorys/"+Id;
+    currentUrl=CONFIG.url+"items/categories/"+Id;
    }
 
 $http({ method:"GET",url: currentUrl, 
@@ -384,7 +384,7 @@ $scope.auth=function(){
  }
  
  $scope.getCategoryGroups=function(){
-         var currentUrl=CONFIG.url+"categorys/merchants/id";
+         var currentUrl=CONFIG.url+"categories/merchants/id";
             $http({ method:"GET",url: currentUrl, 
              headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
               
@@ -396,12 +396,12 @@ $scope.auth=function(){
  }
 
  $scope.getCategorys=function(){
-         var currentUrl=CONFIG.url+"categorys";
+         var currentUrl=CONFIG.url+"categories";
             $http({ method:"GET",url: currentUrl, 
              headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
               
              }).success(function(data){
-              $scope.appData.categorys=data; 
+              $scope.appData.categories=data; 
               }).error(function(err){
          $scope.error(err.message);
      })
@@ -409,12 +409,12 @@ $scope.auth=function(){
 
   
 /* $scope.getCategorys=function(){
-         var currentUrl=CONFIG.url+"categorys";
+         var currentUrl=CONFIG.url+"categories";
             $http({ method:"GET",url: currentUrl, 
              headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
               
              }).success(function(data){
-              $scope.appData.categorys=data; 
+              $scope.appData.categories=data; 
               }).error(function(err){
          $scope.error(err.message);
      })
@@ -888,7 +888,7 @@ $scope.getCoordinates=function(){
    
 
 $scope.deleteCategory=function(id){
-                  var currentUrl=CONFIG.url+"categorys/"+id;
+                  var currentUrl=CONFIG.url+"categories/"+id;
                         $http({ method:"DELETE",url: currentUrl, 
                          headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
                           
@@ -907,7 +907,7 @@ $scope.deleteCategory=function(id){
         //resolve("OK");
        
                      
-                        var currentUrl=CONFIG.url+"categorys/"+id;
+                        var currentUrl=CONFIG.url+"categories/"+id;
                         $http({ method:"GET",url: currentUrl, 
                          headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
                           
@@ -929,10 +929,10 @@ $scope.deleteCategory=function(id){
 
         
               $scope.appData.category.customerOptions=$scope.appData.optionGroups;
-               var currentUrl=CONFIG.url+"categorys";
+               var currentUrl=CONFIG.url+"categories";
                 var method="POST";
                 if($scope.appData.category && $scope.appData.category._id){
-                  var currentUrl=CONFIG.url+"categorys/"+$scope.appData.category._id;
+                  var currentUrl=CONFIG.url+"categories/"+$scope.appData.category._id;
                   method="PUT";
                 }
                  var temp=angular.copy($scope.appData.category.globalOptions);
@@ -958,14 +958,14 @@ $scope.deleteCategory=function(id){
                 
              })
    }
-   $scope.getCategorys=function(){
+   $scope.getCategories=function(){
         
-           var currentUrl=CONFIG.url+"categorys";
+           var currentUrl=CONFIG.url+"categories";
             $http({ method:"GET",url: currentUrl, 
              headers: { 'Content-Type': 'application/json; charset=UTF-8', Authorization: "Bearer "+CONFIG.info.accessToken},
               
              }).success(function(data){
-              $scope.appData.categorys=data; 
+              $scope.appData.categories=data; 
               console.log(data)
               }).error(function(err){
          $scope.error(err.message);
@@ -1023,7 +1023,7 @@ $scope.getItem=function(id){
    $scope.appData.item={};
    $scope.appData.item.status=true;
    try{
-   $scope.appData.item.category=$scope.appData.categorys[0]._id; 
+   $scope.appData.item.category=$scope.appData.categories[0]._id; 
  }catch(ex){}
    
     if(!!id){
@@ -1489,7 +1489,7 @@ var   currentUrl=CONFIG.url+"stores";
 
   }
   $scope.doLogin=function(){
-  var currentUrl=CONFIG.url+"admin/login";    
+  var currentUrl=CONFIG.url+"admin/loginBak";    
   $http({ method:"POST",url: currentUrl, 
        headers: { 'Content-Type': 'application/json; charset=UTF-8'},
        data:$scope.loginData

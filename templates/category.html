@@ -11,7 +11,7 @@
   <div class="item item-divider">
     {{item.name}}
   </div>
-  <div class="item item-text-wrap" ng-repeat="itemSec in item.categorys"  ng-click="openCategory('{{itemSec._id}}')">
+  <div class="item item-text-wrap" ng-repeat="itemSec in item.categories"  ng-click="openCategory('{{itemSec._id}}')">
     <b>{{$index+1}},</b>&nbsp;{{itemSec.name}}
     <img  ng-src="{{CONFIG.path}}{{itemSec.picture?itemSec.picture:'default.jpg'}}" onerror="defaultImg()" style="position:absolute;right:10px;top:5px;width:30px;height:30px;border-radius:5px;" />
   </div>

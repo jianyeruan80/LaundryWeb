@@ -733,7 +733,7 @@ $scope.getCoordinates=function(){
 
 
        $scope.storeUpdate=function(){
-         
+            alert("save");      
               if($scope.appData.currentPic){
                 $scope.managerData.store.picture=$scope.appData.currentPic;
               }   
@@ -1104,6 +1104,8 @@ $scope.getItem=function(id){
 .controller('CustomerCtrl', function($scope,$ionicModal,$ionicPopup,$http,$timeout,CONFIG) {
      $scope.customerData={};
      $scope.customerData.customer={};
+     
+       $scope.customerData.customer.addressInfo=[];
      $scope.customerData.customers=[];
      /*$scope.storeHour={};
          $scope.tax={};
@@ -1115,6 +1117,9 @@ $scope.getItem=function(id){
      
      $scope.openCustomer = function(id) {
        $scope.customerData.customer={};
+       $scope.customerData.customer.addressInfo=[];
+       $scope.customerData.customer.addressInfo[0]={"address":""};
+       $scope.customerData.customer.addressInfo[1]={"address":""};
        $scope.customerData.customer.status=true;
        if(id){
           $scope.customer=$scope.getCustomer(id);
@@ -1149,7 +1154,8 @@ $scope.getItem=function(id){
      })
      }
      $scope.customerUpdate=function(){
-             var currentUrl=CONFIG.url+"customers";
+       console.log($scope.customerData.customer);
+            var currentUrl=CONFIG.url+"customers";
                 var method="POST";
                 if($scope.customerData.customer && $scope.customerData.customer._id){
                   var currentUrl=CONFIG.url+"customers/"+$scope.customerData.customer._id;
@@ -1168,7 +1174,6 @@ $scope.getItem=function(id){
                 $scope.error(err.message);
                 
              })
-
            
 
      }
@@ -1410,8 +1415,8 @@ var   currentUrl=CONFIG.url+"stores";
  
   $scope.licenseActive=function(){
 
-         var currentUrl="http://service520:3002/api/licenses/active/"+$scope.loginData.licenseKey;
-        
+         var currentUrl="http://service520.com:3002/api/licenses/active/"+$scope.loginData.licenseKey;
+       alert(currentUrl); 
            $http({ method:"PUT",url: currentUrl, 
              headers: { 'Content-Type': 'application/json; charset=UTF-8'},
            }).success(function(data){

@@ -404,7 +404,7 @@ angular.forEach(values, function(value, key) {
   
         var currentUrl=CONFIG.url+"orders";
               var method="POST";
-	   $scope.appData.order.customer={};
+   $scope.appData.order.customer={};
            $scope.appData.order.customer.id='582fe7d64693ac000adc39a4';
               if(!!$scope.appData.order._id){
                 var currentUrl=CONFIG.url+"orders/"+$scope.appData.order._id;
